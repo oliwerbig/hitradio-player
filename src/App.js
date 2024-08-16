@@ -85,7 +85,7 @@ const App = () => {
 
   return (
     <>
-      <div className="App bg-white p-6 w-[80vw]">
+      <div className="App w-[100%]">
         <div
           className="bg-[#566efd] flex flex-row justify-between items-center gap-6 py-4 px-6 rounded-xl"
         >
