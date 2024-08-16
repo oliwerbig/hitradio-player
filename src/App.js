@@ -43,7 +43,7 @@ const App = () => {
   const player = useGlobalAudioPlayer();
   React.useEffect(() => {
     player.load(stationURL, {
-      autoplay: true,
+      autoplay: false,
       html5: true,
       format: 'mp3',
       volume: 0.8
