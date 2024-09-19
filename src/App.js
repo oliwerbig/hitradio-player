@@ -54,18 +54,18 @@ const App = () => {
   }, [stationKey])
 
   React.useEffect(() => {
-    setTimeout(fetchInfo, 2000)
+    setTimeout(fetchInfo, 1000)
   }, [currentlyPlaying])
 
   const handlePlay = () => {
-    player.play()
     setPlaying(true);
+    player.play()
     console.log("play")
   }
 
   const handlePause = () => {
-    player.pause()
     setPlaying(false);
+    player.pause()
     console.log("pause")
   }
 
@@ -86,7 +86,7 @@ const App = () => {
 
   const handleChangeStation = (newStationKey) => {
     setStationKey(newStationKey)
-    player.play();
+    handlePlay()
   }
 
   return (
@@ -97,7 +97,7 @@ const App = () => {
         >
           <div className='flex flex-row items-center flex-start gap-6'>
 
-            <a href="#" className="playButton flex-3" onClick={toggle}>
+            <a href="#" className="playButton flex-3" onClick={toggle} key={isPlaying}>
               {isPlaying ? (
                 <i className="fa-solid fa-pause text-white text-4xl"></i>
               ) : (
@@ -116,11 +116,11 @@ const App = () => {
           <div className='flex flex-row items-center flex-start gap-6'>
             <div className='flex-3 flex flex-row items-center gap-2 rounded-lg border-white border-2 py-2 px-4 border-solid bg-[#4c63e8]'>
               <i class="fa-solid fa-arrow-right-arrow-left text-white text-lg"></i>
-              <h1 className='text-white font-bold'>
+              <h1 className='text-white font-bold' key={stationKey}>
                 {stationKey === "hitradio" ? <a href="#" onClick={() => handleChangeStation("gospel24")}> {stations["gospel24"].station} </a> : <a href="#" onClick={() => handleChangeStation("hitradio")}> {stations["hitradio"].station} </a>}
               </h1>
             </div>
-            <div className='flex-3 flex flex-row  items-center gap-4 hidden sm:flex'>
+            <div className='flex-3 flex flex-row  items-center gap-4 hidden sm:flex' key={isMuted + volume}>
               {isMuted || volume === 0 ? <a href='#' class="fa-solid fa-volume-xmark text-white text-lg" onClick={handleMuteToggle}></a> :
                 volume < 0.4 ? <a href="#" class="fa-solid fa-volume-off text-white text-lg" onClick={handleMuteToggle}></a> :
                   volume < 0.8 ? <a class="fa-solid fa-volume-low text-white text-lg" onClick={handleMuteToggle}></a> :
