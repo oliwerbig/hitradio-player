@@ -97,8 +97,14 @@ const App = () => {
         >
           <div className='flex flex-row items-center flex-start gap-6'>
 
-            <a href="#" className="playButton flex-3" onClick={toggle} key={isPlaying}>
-              {isPlaying ? (
+            <a href="#" className="playButton flex-3" onClick={toggle} key={isPlaying + player.isReady}>
+              {!player.isReady ? (
+
+                <div role="status">
+                  <i className="fa-solid fa-spinner text-white text-4xl animate-[spin_2s_linear_infinite]"></i>
+                </div>
+
+              ) : isPlaying ? (
                 <i className="fa-solid fa-pause text-white text-4xl"></i>
               ) : (
                 <i className="fa-solid fa-play text-white text-4xl"></i>
