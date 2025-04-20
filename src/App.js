@@ -128,8 +128,11 @@ const App = () => {
 
   const handleChangeStation = (newStationKey) => {
     setStationKey(newStationKey)
-    handlePlay()
   }
+
+  useEffect(() => {
+    stationKey !== undefined && handlePlay()
+  }, [stationKey])
 
   const { height, width } = useWindowDimensions();
 
@@ -158,7 +161,7 @@ const App = () => {
                     <FontAwesomeIcon icon={faPlay} className="text-[#463bfb] text-lg" fixedWidth />
                   )}
                 </div>
-                <div className='text-left basis-[80%] leading-2 overflow-hidden'>
+                <div className='text-left basis-[80%] leading-6 overflow-hidden'>
                   <p className='font-bold overflow-hidden m-0'>{subject.station}</p>
                   <p className='overflow-hidden m-0'>{currentlyPlaying[key]}</p>
                 </div>
@@ -174,9 +177,14 @@ const App = () => {
             <a href="#" className="playButton flex-3" key={isPlaying + player.isReady}>
               {!player.isReady ? (
 
-                <div role="status">
-                  <FontAwesomeIcon icon={faSpinner} className="text-white text-xl animate-[spin_2s_linear_infinite]" fixedWidth />
-                </div>
+                stationKey === "" ? (
+                  <FontAwesomeIcon icon={faPlay} className="text-white text-lg opacity-30" fixedWidth />
+                ) : (
+
+                  <div role="status">
+                    <FontAwesomeIcon icon={faSpinner} className="text-white text-xl animate-[spin_2s_linear_infinite]" fixedWidth />
+                  </div>
+                )
 
               ) : isPlaying ? (
                 <FontAwesomeIcon icon={faPause} className="text-white text-lg" fixedWidth />
