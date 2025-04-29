@@ -35,10 +35,12 @@ const App = () => {
     hitradio: {
       station: "Hit Rádió",
       url: "https://streamer.radio.co/s47952d7c4/listen",
+      about: "/musorujsag",
     },
     gospel24: {
       station: "Gospel24",
       url: "https://s3.radio.co/s0f9e837e7/listen",
+      about: "/gospel24",
     },
   };
   const stationAPIs = {
@@ -142,7 +144,7 @@ const App = () => {
   }
 
   return (
-    <div className='all:initial App w-[100%] flex flex-col gap-3 items-center justify-center fixed bottom-6 drop-shadow-2xl'>
+    <div className='all:initial App w-[100%] flex flex-col gap-3 items-center justify-center fixed bottom-3 drop-shadow-2xl'>
       <div className="flex flex-col gap-3 items-center justify-center p-3 drop-shadow-2xl">
         {isRadioSelectOpen && (
           <div className='flex flex-col items-start w-96 px-2 py-2 gap-1 justify-center bg-white drop-shadow-2xl rounded-xl'>
@@ -165,9 +167,13 @@ const App = () => {
                   <p className='font-bold overflow-hidden m-0'>{subject.station}</p>
                   <p className='overflow-hidden m-0'>{currentlyPlaying[key]}</p>
                 </div>
+                <div>
+                  <a href={stations[stationKey]?.about ?? "#"} className="cursor-pointer">
+                    <FontAwesomeIcon icon="fa-solid fa-circle-info" />
+                  </a>
+                </div>
               </div>
             ))}
-            <a href="#" className='text-[#463bfb] underline py-1 px-1'>Tudj meg többet a rádiócsatornáinkról</a>
           </div>
         )}
         <div
