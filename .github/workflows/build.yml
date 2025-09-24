@@ -28,11 +28,11 @@ jobs:
     - name: Build project
       run: CI=false npm run build
 
-    - name: FTP Deploy
-      uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+    - name: SFTP Deploy
+      uses: easingthemes/sftp-deploy@main
       with:
-        server: ${{ secrets.FTP_SERVER }}
-        username: ${{ secrets.FTP_USERNAME }}
-        password: ${{ secrets.FTP_PASSWORD }}
-        local-dir: ./build/
-        server-dir: /var/www/radioplayer_build/ # <-- Módosítsd ezt a kívánt célmappára
+        server: ${{ secrets.SFTP_SERVER }}
+        username: ${{ secrets.SFTP_USERNAME }}
+        password: ${{ secrets.SFTP_PASSWORD }}
+        local_path: ./build/
+        remote_path: /var/www/radioplayer_build/
