@@ -31,8 +31,8 @@ jobs:
     - name: SFTP Deploy
       uses: easingthemes/sftp-deploy@main
       with:
-        server: ${{ secrets.SFTP_SERVER }}
-        username: ${{ secrets.SFTP_USERNAME }}
-        password: ${{ secrets.SFTP_PASSWORD }}
+        server: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
         local_path: ./build/
         remote_path: /var/www/radioplayer_build/
