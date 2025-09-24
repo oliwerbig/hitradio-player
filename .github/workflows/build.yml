@@ -43,7 +43,7 @@ jobs:
         local_path: ./build/
         remote_path: /var/www/radioplayer_build/
 
-    - name: Copy JS file via SSH
+    - name: Create Symlink via SSH
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.FTP_SERVER }}
@@ -53,6 +53,6 @@ jobs:
           set -e
           echo "Waiting for 5 seconds for SFTP to complete..."
           sleep 5
-          echo "Starting copy operation..."
-          cp /var/www/radioplayer_build/build/static/js/${{ env.main_js_file }} /var/www/static/radioPlayer.js
-          echo "File copied successfully to /var/www/static/radioPlayer.js"
+          echo "Starting symlink operation..."
+          ln -sf /var/www/radioplayer_build/build/static/js/${{ env.main_js_file }} /var/www/static/radioPlayer.js
+          echo "Symlink created successfully for ${{ env.main_js_file }}"
