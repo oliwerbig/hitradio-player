@@ -29,10 +29,10 @@ jobs:
       run: CI=false npm run build
 
     - name: SFTP Deploy
-      uses: easingthemes/sftp-deploy@main
+      uses: larytet/sftp-deploy-action@v1.0
       with:
-        server: ${{ secrets.FTP_SERVER }}
+        host: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-        local_path: ./build/
-        remote_path: /var/www/radioplayer_build/
+        remoteDir: /var/www/radioplayer_build/
+        localDir: build/
