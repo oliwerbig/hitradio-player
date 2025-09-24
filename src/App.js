@@ -98,7 +98,7 @@ const App = () => {
     (async () => {
       setTimeout(async () => {
         await fetchInfo()
-      }, 5000)
+      }, 30000)
     })();
   }, [currentlyPlaying])
 
