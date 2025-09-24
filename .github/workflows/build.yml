@@ -28,6 +28,12 @@ jobs:
     - name: Build project
       run: CI=false npm run build
 
+    - name: Find main JS file
+      id: find_js
+      run: |
+        main_js_file=$(basename $(ls build/static/js/main.*.js))
+        echo "main_js_file=$main_js_file" >> $GITHUB_ENV
+
     - name: SFTP Deploy
       uses: wlixcc/SFTP-Deploy-Action@v1.2.4
       with:
@@ -36,3 +42,13 @@ jobs:
         password: ${{ secrets.FTP_PASSWORD }}
         local_path: ./build/
         remote_path: /var/www/radioplayer_build/
+
+    - name: Create Symlink via SSH
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.FTP_SERVER }}
+        username: ${{ secrets.FTP_USERNAME }}
+        password: ${{ secrets.FTP_PASSWORD }}
+        script: |
+          ln -sf /var/www/radioplayer_build/static/js/${{ env.main_js_file }} /var/www/static/radioPlayer.js
+          echo "Symlink created for ${{ env.main_js_file }}"
