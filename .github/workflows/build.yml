@@ -54,5 +54,5 @@ jobs:
           echo "Waiting for 5 seconds for SFTP to complete..."
           sleep 5
           echo "Starting copy operation..."
-          cp /var/www/radioplayer_build/static/js/${{ env.main_js_file }} /var/www/static/radioPlayer.js
+          cp /var/www/radioplayer_build/build/static/js/${{ env.main_js_file }} /var/www/static/radioPlayer.js
           echo "File copied successfully to /var/www/static/radioPlayer.js"
